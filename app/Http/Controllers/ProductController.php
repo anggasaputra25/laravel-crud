@@ -29,7 +29,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $validatedData = $request->validate([
+            "name" => "required",
+            "color" => "required",
+            "category" => "required",
+            "price" => "required",
+        ]);
+
+        Product::create($validatedData);
+
+        return redirect('/');
     }
 
     /**

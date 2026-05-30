@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [ProductController::class, 'show']);
-Route::post('/user', [ProductController::class, 'store']);
+Route::post('/product', [ProductController::class, 'store'])->name("product.store");
 Route::get('/add/product', function () {
     return Inertia::render('AddProduct');
-});
+})->name("product.add");
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome');
