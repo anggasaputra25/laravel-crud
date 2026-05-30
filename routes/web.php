@@ -6,6 +6,7 @@ use Inertia\Inertia;
 
 Route::get('/', [ProductController::class, 'show']);
 Route::post('/product', [ProductController::class, 'store'])->name("product.store");
+Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name("product.remove");
 Route::get('/add/product', function () {
     return Inertia::render('AddProduct');
 })->name("product.add");

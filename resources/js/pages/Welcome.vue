@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, router } from '@inertiajs/vue3';
 type Product = {
     id: number | string;
     name: string;
@@ -11,6 +11,13 @@ type Product = {
 defineProps({
     products: Array as () => Product[]
 })
+
+const remove = (id: number | string) => {
+    const condition = confirm("Are you sure you want to remove this product?");
+    if (condition) {
+        router.delete(route("product.remove", { id }));
+    }
+}
 </script>
 
 <template>
@@ -73,7 +80,7 @@ defineProps({
                             <button type="button" class="rounded-md border border-transparent bg-yellow-500 px-4 py-2.5 text-sm font-medium leading-5 text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-4 focus:ring-yellow-300 me-2">
                                 Edit
                             </button>
-                            <button type="button" class="rounded-md border border-transparent bg-red-500 px-4 py-2.5 text-sm font-medium leading-5 text-white shadow-sm hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300">
+                            <button @click="remove(product.id)" type="button" class="rounded-md border border-transparent bg-red-500 px-4 py-2.5 text-sm font-medium leading-5 text-white shadow-sm hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300">
                                 Remove
                             </button>
                         </td>
