@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('AddProduct');
     }
 
     /**
@@ -54,17 +54,30 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(int $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return Inertia::render('EditProduct', [
+            'product' => $product
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, int $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $validatedData = $request->validate([
+            "name" => "required",
+            "color" => "required",
+            "category" => "required",
+            "price" => "required",
+        ]);
+
+        $product->update($validatedData);
+
+        return redirect('/');
     }
 
     /**

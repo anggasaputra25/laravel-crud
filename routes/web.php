@@ -7,9 +7,9 @@ use Inertia\Inertia;
 Route::get('/', [ProductController::class, 'show']);
 Route::post('/product', [ProductController::class, 'store'])->name("product.store");
 Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name("product.remove");
-Route::get('/add/product', function () {
-    return Inertia::render('AddProduct');
-})->name("product.add");
+Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name("product.edit");
+Route::put('/product/{id}', [ProductController::class, 'update'])->name("product.update");
+Route::get('/add/product', [ProductController::class, 'create'])->name("product.add");
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome');

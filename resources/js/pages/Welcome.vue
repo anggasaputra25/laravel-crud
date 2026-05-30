@@ -18,6 +18,11 @@ const remove = (id: number | string) => {
         router.delete(route("product.remove", { id }));
     }
 }
+
+const edit = (id: number | string) => {
+    router.visit(route("product.edit", { id }));
+}
+
 </script>
 
 <template>
@@ -77,7 +82,7 @@ const remove = (id: number | string) => {
                             ${{ product.price.toFixed(2) }}
                         </td>
                         <td class="px-6 py-4">
-                            <button type="button" class="rounded-md border border-transparent bg-yellow-500 px-4 py-2.5 text-sm font-medium leading-5 text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-4 focus:ring-yellow-300 me-2">
+                            <button @click="edit(product.id)" type="button" class="rounded-md border border-transparent bg-yellow-500 px-4 py-2.5 text-sm font-medium leading-5 text-white shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-4 focus:ring-yellow-300 me-2">
                                 Edit
                             </button>
                             <button @click="remove(product.id)" type="button" class="rounded-md border border-transparent bg-red-500 px-4 py-2.5 text-sm font-medium leading-5 text-white shadow-sm hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300">
